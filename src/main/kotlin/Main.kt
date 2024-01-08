@@ -2,23 +2,26 @@ import kotlin.math.round
 
 fun main(){
 
-    var r2d2Pos:List<Int>
+    val movimientos = pedirmovimientos()
+    val cosa = mover(movimientos)
+    println("x: ${cosa[0]}, y: ${cosa[1]}, dir: ${orientaacionRobot(cosa[2])}")
 
-    r2d2Pos = mover(10, 5, -2)
-    println("x: ${r2d2Pos[0]}, y: ${r2d2Pos[1]}, dir: ${orientaacionRobot(r2d2Pos[2])}")
-
-    r2d2Pos = mover(0, 0, 0)
-    println("x: ${r2d2Pos[0]}, y: ${r2d2Pos[1]}, dir: ${orientaacionRobot(r2d2Pos[2])}")
-
-    r2d2Pos = mover()
-    println("x: ${r2d2Pos[0]}, y: ${r2d2Pos[1]}, dir: ${orientaacionRobot(r2d2Pos[2])}")
-
-    r2d2Pos = mover(-10, -5, 2)
-    println("x: ${r2d2Pos[0]}, y: ${r2d2Pos[1]}, dir: ${orientaacionRobot(r2d2Pos[2])}")
-
-    r2d2Pos = mover(-10, -5, 2, 4, -8)
-    println("x: ${r2d2Pos[0]}, y: ${r2d2Pos[1]}, dir: ${orientaacionRobot(r2d2Pos[2])}")
 }
+
+fun pedirmovimientos(): List<Int>{
+    val lista = mutableListOf<Int>()
+    do {
+
+        print("Dime el numero de veces que quiera que se mueva el robot(Cualquier cosa que no sea un numero si quieres acabar): ")
+        val num = try {
+            readln().toInt()
+        }catch (e:Exception){
+            return lista
+        }
+        lista.add(num)
+    }while (true)
+}
+
 
 fun orientaacionRobot(dir:Int)= when(dir){
         0-> "NEGATIVE Y"
@@ -29,7 +32,7 @@ fun orientaacionRobot(dir:Int)= when(dir){
     }
 
 
-fun mover(vararg movs:Int):List<Int>{
+fun mover(movs:List<Int>):List<Int>{
 
     var posX = 0
     var posY = 0
