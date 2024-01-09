@@ -1,17 +1,36 @@
 import kotlin.math.round
 
 fun main(){
+    var estado = false
+    do {
+        val movimientos = pedirmovimientos()
+        val cosa = mover(movimientos)
+        println("x: ${cosa[0]}, y: ${cosa[1]}, dir: ${orientaacionRobot(cosa[2])}")
+        val repetir = opcion()
+        if (repetir){
+            estado = true
+        }
+    }while (!estado)
+}
 
-    val movimientos = pedirmovimientos()
-    val cosa = mover(movimientos)
-    println("x: ${cosa[0]}, y: ${cosa[1]}, dir: ${orientaacionRobot(cosa[2])}")
+fun opcion ():Boolean{
 
+    do {
+        print("Quieres hacer que el robot se mueva de nuevo? (s/n): ")
+        val respuesta = readln()
+        return if (respuesta.lowercase() == "s"){
+            false
+        }else if (respuesta.lowercase() == "n") {
+            true
+        }else{
+            continue
+        }
+    }while(true)
 }
 
 fun pedirmovimientos(): List<Int>{
     val lista = mutableListOf<Int>()
     do {
-
         print("Dime el numero de veces que quiera que se mueva el robot(Cualquier cosa que no sea un numero si quieres acabar): ")
         val num = try {
             readln().toInt()
