@@ -43,9 +43,9 @@ fun pedirmovimientos(): List<Int>{
 
 
 fun orientaacionRobot(dir:Int)= when(dir){
-        0-> "NEGATIVE Y"
+        0-> "POSITIVE Y"
         1-> "NEGATIVE X"
-        2-> "POSITIVE Y"
+        2-> "NEGATIVE Y"
         3-> "POSITIVE X"
         else -> "Posicion desconocida"
     }
